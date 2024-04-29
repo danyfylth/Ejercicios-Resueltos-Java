@@ -9,7 +9,7 @@ package Ejercicios.BitMap;
  * @author Daniel
  */
 public class Recursividad {
-
+    
     public static void main(String args[]) {
         System.out.println("Factorial: " + factorial(5));
         System.out.println("Division entera: " + division(10, 2));
