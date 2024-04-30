@@ -1,12 +1,13 @@
 package Ejercicios.BitMap;
 
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Daniel Ejercicio: Buscar grupos de 1 y contarlos dentro de la matriz
  * esta puede estar de diversas maneras pero se tendra que contar los grupos
- * contando las diagonales como conexión tambien. 
+ * contando las diagonales como conexiï¿½n tambien. 
  *
  * Resultado hasta el momento: Problema con diagonales o cuellos, solucionarlo
  */
@@ -58,7 +59,7 @@ public class EjercicioMatrizBitmap {
         int[][] matrizCopia = matriz;
         int numeroFilas = matrizCopia.length;
         int numeroColumnas = matrizCopia[0].length;
-
+        List<int[]> listaRecordados = new ArrayList<>();
         // Limpiar:
         // Paso 1: right,
         // Paso 2: right-bottom,
@@ -69,10 +70,20 @@ public class EjercicioMatrizBitmap {
         // Paso 7: top,
         // Paso 8: top-right
         while (matrizCopia[fila][columna] == 1) {
+            // System.out.println("Fila: " + fila + " Columna: " + columna);
             boolean limpiar = true;
             if (columna + 1 <= numeroColumnas - 1) {
                  if ((matrizCopia[fila][columna + 1] == 1) && limpiar) {
-                    matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                     columna = columna + 1;
                     limpiar = false;
                  }
@@ -80,7 +91,16 @@ public class EjercicioMatrizBitmap {
                  
             if((columna + 1 <= numeroColumnas - 1) && (fila + 1 <= numeroFilas - 1)){
                  if ((matrizCopia[fila + 1][columna + 1] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila + 1;
                      columna = columna + 1;
                      limpiar = false;
@@ -89,7 +109,16 @@ public class EjercicioMatrizBitmap {
                      
             if ((fila + 1 <= numeroFilas - 1)) {
                  if ((matrizCopia[fila + 1][columna] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila + 1;
                      limpiar = false;
                  }
@@ -97,7 +126,16 @@ public class EjercicioMatrizBitmap {
 
             if((columna - 1 >= 0) && (fila + 1 <= numeroFilas - 1)){
                  if ((matrizCopia[fila + 1][columna - 1] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila + 1;
                      columna = columna - 1;
                      limpiar = false;
@@ -106,7 +144,16 @@ public class EjercicioMatrizBitmap {
 
             if((columna - 1 >= 0)){
                  if ((matrizCopia[fila][columna - 1] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      columna = columna - 1;
                      limpiar = false;
                  }
@@ -114,7 +161,16 @@ public class EjercicioMatrizBitmap {
 
             if((columna - 1 >= 0) && (fila - 1 >= 0)){
                  if ((matrizCopia[fila - 1][columna - 1] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila - 1;
                      columna = columna - 1;
                      limpiar = false;
@@ -122,7 +178,16 @@ public class EjercicioMatrizBitmap {
             }
             if((fila - 1 >= 0)){
                  if ((matrizCopia[fila - 1][columna] == 1) && limpiar) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila - 1;
                      limpiar = false;
                  }
@@ -130,76 +195,138 @@ public class EjercicioMatrizBitmap {
 
             if((columna + 1 <= numeroColumnas - 1) && (fila - 1 >= 0) && limpiar) {
                  if (matrizCopia[fila - 1][columna + 1] == 1) {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                      fila = fila - 1;
                      columna = columna + 1;
                  } else {
-                     matrizCopia[fila][columna] = 0;
+                     if (recordarCamino(matrizCopia, fila, columna)) {
+                         if (!listaRecordados.contains(new int[]{fila, columna})) {
+                             listaRecordados.add(new int[]{fila, columna});
+                         } else {
+                             listaRecordados.remove(new int[]{fila, columna});
+                             matrizCopia[fila][columna] = 0;
+                         }
+                     } else {
+                         matrizCopia[fila][columna] = 0;
+                     }
                  }
             }
         }
-        
         return matrizCopia;
     }
 
     public static boolean recordarCamino(int[][] matriz, int x, int y) {
-        int contadorCeros = 0;
         int numeroFilas = matriz.length;
         int numeroColumnas = matriz[0].length;
+        String analizador = "";
+        String patron = "010";
 
+        /*
+         * X 0 0
+         * 0 N 0
+         * 0 0 0
+         * */
         if (x - 1 >= 0 && y - 1 >= 0) {
-            if (matriz[x - 1][y - 1] == 0) {
-                contadorCeros++;
+            analizador = "" + matriz[x][y - 1] + matriz[x - 1][y - 1] + matriz[x - 1][y];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
-        if (x - 1 >= 0) {
-            if (matriz[x - 1][y] == 0) {
-                contadorCeros++;
+        /*
+         * 0 X 0
+         * 0 N 0
+         * 0 0 0
+         * */
+        if (x - 1 >= 0 && y - 1 >= 0 && y + 1 <= numeroColumnas - 1) {
+            analizador = "" + matriz[x - 1][y - 1] + matriz[x - 1][y] + matriz[x - 1][y + 1];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
+        /*
+         * 0 0 X
+         * 0 N 0
+         * 0 0 0
+         * */
         if (x - 1 >= 0 && y + 1 <= numeroColumnas - 1) {
-            if (matriz[x - 1][y + 1] == 0) {
-                contadorCeros++;
+            analizador = "" + matriz[x - 1][y] + matriz[x - 1][y + 1] + matriz[x][y + 1];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
-        if (y + 1 <= numeroColumnas - 1) {
-            if (matriz[x][y + 1] == 0) {
-                contadorCeros++;
+        /*
+         * 0 0 0
+         * 0 N X
+         * 0 0 0
+         * */
+        if (y + 1 <= numeroColumnas - 1 && x + 1 <= numeroFilas - 1 && x - 1 >= 0) {
+            analizador = "" + matriz[x - 1][y + 1] + matriz[x][y + 1] + matriz[x + 1][y + 1];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
+        /*
+         * 0 0 0
+         * 0 N 0
+         * 0 0 X
+         * */
         if (x + 1 <= numeroFilas - 1 && y + 1 <= numeroColumnas - 1) {
-            if (matriz[x + 1][y + 1] == 0) {
-                contadorCeros++;
+            analizador = "" + matriz[x][y + 1] + matriz[x + 1][y + 1] + matriz[x + 1][y];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
-        if (x + 1 <= numeroFilas - 1) {
-            if (matriz[x + 1][y] == 0) {
-                contadorCeros++;
+        /*
+         * 0 0 0
+         * 0 N 0
+         * 0 X 0
+         * */
+        if (x + 1 <= numeroFilas - 1 && y - 1 >= 0 && y + 1 <= numeroColumnas - 1) {
+            analizador = "" + matriz[x + 1][y - 1] + matriz[x + 1][y] + matriz[x + 1][y + 1];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
-        if (x + 1 <= numeroFilas - 1 && y - 1 >= 0) {
-            if (matriz[x + 1][y - 1] == 0) {
-                contadorCeros++;
-            }
-        }
-        
-        if (y - 1 >= 0) {
-            if (matriz[x][y - 1] == 0) {
-                contadorCeros++;
+        /*
+         * 0 0 0
+         * 0 N 0
+         * X 0 0
+         * */
+        if (y - 1 >= 0 && x + 1 <= numeroFilas - 1) {
+            analizador = "" + matriz[x][y - 1] + matriz[x + 1][y - 1] + matriz[x + 1][y];
+            if (analizador.equals(patron)) {
+                return true;
             }
         }
 
-        if (contadorCeros > 2) {
-            return false;
+        /*
+         * 0 0 0
+         * X N 0
+         * 0 0 0
+         * */
+        if (x + 1 <= numeroFilas - 1 && x - 1 >= 0 && y - 1 >= 0) {
+            analizador = "" + matriz[x - 1][y - 1] + matriz[x][y - 1] + matriz[x + 1][y - 1];
+            if (analizador.equals(patron)) {
+                return true;
+            }
         }
 
-        return true;
+        return false;
     }
 
     public static boolean estaLimpio(int[][] matriz) {
