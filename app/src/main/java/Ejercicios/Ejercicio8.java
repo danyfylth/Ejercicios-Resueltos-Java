@@ -21,7 +21,7 @@ import java.util.List;
  * 
  */
 public class Ejercicio8 {
-    
+
     public static void main(String args[]) {
         
         System.out.println("El primo mayor es: " + encontrarMayorPrimo(600851475143L));

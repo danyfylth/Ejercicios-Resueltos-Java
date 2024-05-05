@@ -5,14 +5,15 @@ import java.util.List;
 
 /**
  *
- * @author Daniel Ejercicio: Buscar grupos de 1 y contarlos dentro de la matriz
+ * @author Daniel 
+ * Ejercicio: Buscar grupos de 1 y contarlos dentro de la matriz
  * esta puede estar de diversas maneras pero se tendra que contar los grupos
  * contando las diagonales como conexi�n tambien. 
  *
  * Resultado hasta el momento: Problema con diagonales o cuellos, solucionarlo
  */
 public class EjercicioMatrizBitmap {
-
+    
     static private int[][] bitMap = {
         {0, 1, 0, 1, 1, 1},
         {1, 1, 0, 1, 1, 1},
